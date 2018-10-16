@@ -1,42 +1,28 @@
-var express = require('express')
-var app = express()
+// req.query
+var express = require('express');
+var bodyParser = require('body-parser');
+var userRoute = require('./routes/user.route')
+
 var port = 3000;
 
+var app = express();
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-var users = [
-	{id:1, name: 'Tuan'},
-	{id:2, name: 'Nguyễn'},
-]
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.get('/',function(req,res){
-	res.render('index',{
-		users:  users
-	});
+app.get('/', function(req, res) {
+	res.render('index', {
+		name: 'AAA'
+		});
+}); 
+
+// Router
+app.use('/users',userRoute);
+// use public
+app.use(express.static('public'))
+
+app.listen(port, function() {
+	console.log('Server listening on port ' + port);
 });
-
-app.get('/users',function(req,res){
-	res.render('users',{
-		users: users
-	});
-});
-
-app.get('/users/search',function(req,res ) {
-	var q = req.query.q;
-	var matchedUser = users.filter(function(user){
-		return user.name.indexOf(q) !== -1;
-	});
-	res.render('user/index',{
-		users:matchedUser
-	});
-});
-
-
-app.get('/tuan',function(req,res){
-	res.send('<h1> TUANA</h1>')
-})
-
-app.listen(port,function(){
-	console.log('Server listening on post ' + port)
-})
