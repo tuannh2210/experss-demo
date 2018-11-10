@@ -2,6 +2,7 @@
 html
 	head
 		link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css")
+		link(rel="stylesheet", href="../css/main.css")
 	body
 		nav(class="navbar navbar-expand-lg navbar-dark bg-dark")
 			a(href="#" class="navbar-brand")
@@ -16,5 +17,17 @@ html
 						a(href="/users" class="nav-link") Users
 					li(class="nav-item")
 						a(href="/users/create" class="nav-link") Thêm mới
+
+					li(class="nav-item")
+						a(href="/products" class="nav-link") Products
+
+					li(class="nav-item")
+						a(href="#" class="nav-link") Cart 
+							span= `(${sumCart})`
+
+				//- if(su)
+
+				//- each val, i in user.name
+				//- 	li(style='color:#fff')= user[val]
 	.container
 		block content

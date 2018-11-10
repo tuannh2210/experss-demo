@@ -1,0 +1,24 @@
+extends ../layout/common
+block content
+	h3(class="mt-5 mb-3 text-center") Product 
+	form(action="/users/search" class="d-flex ")
+		input(class="form-control" type="text" name="q" value = q)
+		button(class="btn ml-3") Search
+
+	- var i = 0;
+	nav
+		ul.pagination.text-center
+			while i < pages
+					li.page-item
+						a(href="./products?page="+i)= i++
+	div.list-pro
+		each pro in products
+			.col-sm-6.col-md-4.col-lg-3.mt-2
+				.card(.col-md-3)
+					img.card-img-top(src=pro.image, alt=pro.name)
+					.card-body
+						h5.card-title= pro.name
+							p.card-text= pro.description
+							a.btn.btn-primary(href='cart/add/' + pro.id) Add to card
+
+	

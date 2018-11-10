@@ -1,0 +1,1 @@
+nodemon --inspect : Mở devTool trên google chorme
